@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+
+  font-family: "Raleway", sans-serif;
+}
+
+footer {
+  text-align: center;
+  font-size: 10px;
+  font-family: "Source Code Pro", monospace;
+}
+
+.body {
+  padding: 20px;
+  background-image: linear-gradient(to top, #d299c2 0%, #fef9d7 100%);
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.temp-now {
+  font-size: 40px;
+}
