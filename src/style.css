@@ -1,6 +1,5 @@
 body {
   padding: 50px;
-
   font-family: "Raleway", sans-serif;
 }
 
@@ -19,4 +18,13 @@ footer {
 
 .temp-now {
   font-size: 40px;
+}
+
+.units .active {
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
 }

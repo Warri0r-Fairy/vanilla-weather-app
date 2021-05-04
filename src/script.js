@@ -10,8 +10,14 @@ function formatDate() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
+
+  if (hour < 10) {
+    hour = `0${hour}`;
+  } else {
+    hour;
+  }
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -24,19 +30,23 @@ function formatDate() {
 
   return formattedDate;
 }
-
-// Update the current temperature with the current temperature
 function showTemp(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  let tempElement = document.querySelector("#current-temp");
+  let celsuisTemp = response.data.main.temp;
+  tempElement.innerHTML = Math.round(celsuisTemp);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
   document.querySelector("#current-desc").innerHTML =
     response.data.weather[0].main;
+  document
+    .querySelector("#current-weather-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 
 function handleSubmit(event) {
@@ -44,8 +54,6 @@ function handleSubmit(event) {
   let city = document.querySelector("#city-input").value;
   getCity(city);
 }
-
-// Update the city name with the city entered in the search
 function getCity(city) {
   let apiKey = "fb2202991880ec9c8bd86bd6cf3cb526";
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}
@@ -66,6 +74,23 @@ function handlePosition(position) {
   axios.get(weatherUrl).then(showTemp);
 }
 
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#current-temp");
+  celsiusLink.classList.remove("active");
+  fahrenhietLink.classList.add("active");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let tempElement = document.querySelector("#current-temp");
+  tempElement.innerHTML = Math.round(celsiusTemp);
+}
+
 // Update the HTML with the current date
 let date = document.querySelector("#current-date");
 date.innerHTML = formatDate();
@@ -76,5 +101,13 @@ search.addEventListener("submit", handleSubmit);
 
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+let celsiusTemp = null;
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
 
 getCity("Melbourne");
