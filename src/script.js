@@ -32,9 +32,8 @@ function formatDate() {
 }
 function showTemp(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  let tempElement = document.querySelector("#current-temp");
-  let celsuisTemp = response.data.main.temp;
-  tempElement.innerHTML = Math.round(celsuisTemp);
+  celsiusTemp = response.data.main.temp;
+  document.querySelector("#current-temp").innerHTML = Math.round(celsiusTemp);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
@@ -47,6 +46,7 @@ function showTemp(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+  console.log(celsiusTemp);
 }
 
 function handleSubmit(event) {
@@ -78,7 +78,7 @@ function showFahrenheitTemp(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-temp");
   celsiusLink.classList.remove("active");
-  fahrenhietLink.classList.add("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   tempElement.innerHTML = Math.round(fahrenheitTemp);
 }
@@ -90,6 +90,8 @@ function showCelsiusTemp(event) {
   let tempElement = document.querySelector("#current-temp");
   tempElement.innerHTML = Math.round(celsiusTemp);
 }
+
+let celsiusTemp = null;
 
 // Update the HTML with the current date
 let date = document.querySelector("#current-date");
@@ -104,8 +106,6 @@ currentLocation.addEventListener("click", getCurrentLocation);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-let celsiusTemp = null;
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
