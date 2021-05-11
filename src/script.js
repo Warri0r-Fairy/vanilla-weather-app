@@ -30,6 +30,37 @@ function formatDate() {
 
   return formattedDate;
 }
+
+function showForecast(response) {
+  console.log(response.data);
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="weather-forecast-day">${day}</div>
+              <img src="#" alt="" />
+              <div class="weather-forecast-temps">
+                <span class="weather-forecast-temp-max">14°</span>
+                <span class="weather-forecast=temp-min">13°</span>
+              </div>
+            </div>`;
+  });
+
+  forecastHTML = forecastHTML + "</div>";
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "fb2202991880ec9c8bd86bd6cf3cb526";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(showForecast);
+}
+
 function showTemp(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
   celsiusTemp = response.data.main.temp;
@@ -46,7 +77,8 @@ function showTemp(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
-  console.log(celsiusTemp);
+
+  getForecast(response.data.coord);
 }
 
 function handleSubmit(event) {
@@ -110,4 +142,4 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
-getCity("Melbourne");
+getCity("Bacchus Marsh");
