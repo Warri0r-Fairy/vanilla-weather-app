@@ -79,8 +79,9 @@ function getForecast(coordinates) {
 
 function showTemp(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  celsiusTemp = response.data.main.temp;
-  document.querySelector("#current-temp").innerHTML = Math.round(celsiusTemp);
+  document.querySelector("#current-temp").innerHTML = Math.round(
+    response.data.main.temp
+  );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
@@ -122,40 +123,13 @@ function handlePosition(position) {
   axios.get(weatherUrl).then(showTemp);
 }
 
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#current-temp");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
-  tempElement.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  let tempElement = document.querySelector("#current-temp");
-  tempElement.innerHTML = Math.round(celsiusTemp);
-}
-
-let celsiusTemp = null;
-
-// Update the HTML with the current date
 let date = document.querySelector("#current-date");
 date.innerHTML = formatDate();
 
-// Call the getCity function when the search button is pressed
 let search = document.querySelector("#city-form", "#search-button");
 search.addEventListener("submit", handleSubmit);
 
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
 
 getCity("Bacchus Marsh");
