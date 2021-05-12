@@ -132,4 +132,4 @@ search.addEventListener("submit", handleSubmit);
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-getCity("Bacchus Marsh");
+getCity("melbourne, au");
