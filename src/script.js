@@ -43,24 +43,31 @@ function showForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class="row forecast-row">`;
   forecast.forEach(function (day, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
             <div class="col-2">
-              <div class="weather-forecast-day">${formatDay(day.dt)}</div>
-              <img src="http://openweathermap.org/img/wn/${
-                day.weather[0].icon
-              }@2x.png" alt="" />
-              <div class="weather-forecast-temps">
-                <span class="weather-forecast-temp-max">${Math.round(
-                  day.temp.max
-                )}°</span>
-                <span class="weather-forecast=temp-min">${Math.round(
-                  day.temp.min
-                )}°</span>
+              <div class="card text-center bg-transparent border-0 weather-forecast " style="width: 10rem">
+                <div class="card-body weekday">
+                  <div class="weather-forecast-day">${formatDay(day.dt)}</div>
+                  <img
+                    src="http://openweathermap.org/img/wn/${
+                      day.weather[0].icon
+                    }@2x.png"
+                    alt=""
+                  />
+                  <div class="weather-forecast-temps">
+                    <span class="weather-forecast-temp-max"
+                      >${Math.round(day.temp.max)}°</span
+                    >
+                    <span class="weather-forecast-temp-min"
+                      >${Math.round(day.temp.min)}°</span
+                    >
+                  </div>
+                </div>
               </div>
             </div>`;
     }

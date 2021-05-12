@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  margin: 50px;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -7,6 +7,7 @@ footer {
   text-align: center;
   font-size: 10px;
   font-family: "Source Code Pro", monospace;
+  margin: 10px;
 }
 
 .body {
@@ -18,4 +19,18 @@ footer {
 
 .temp-now {
   font-size: 30px;
+}
+
+.row-spacing {
+  margin: 10px;
+}
+
+.weekday:hover {
+  background-color: #eed6cf;
+  border-radius: 10px;
+  transition: ease-in-out;
+}
+
+.weather-forecast-temp-min {
+  opacity: 0.6;
 }
