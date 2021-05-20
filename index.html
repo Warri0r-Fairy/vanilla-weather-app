@@ -30,72 +30,70 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="container">
-      <div class="body">
-        <form id="city-form">
-          <div class="row row-spacing">
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                autofocus="on"
-                placeholder="Search for a city"
-                id="city-input"
-              />
-            </div>
-            <div class="col-2">
-              <input
-                type="submit"
-                class="btn btn-primary"
-                value="Search"
-                id="search-button"
-              />
-            </div>
-            <div class="col-2">
-              <button class="btn btn-success" id="current-location-button">
-                Current
-              </button>
-            </div>
-          </div>
-        </form>
+    <div class="container body">
+      <form id="city-form">
         <div class="row row-spacing">
-          <div class="col-6">
-            <div class="current-location">
-              <h1 id="city-name"></h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row-spacing">
-          <div class="col-4">
-            <p class="date" id="current-date"></p>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              autofocus="on"
+              placeholder="Search for a city"
+              id="city-input"
+            />
           </div>
           <div class="col-2">
-            <img src="#" class="current-icon" id="current-weather-icon" />
-            <span class="temp-now" id="current-temp"></span>
-            <span class="units">°C </span>
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Search"
+              id="search-button"
+            />
           </div>
-
-          <div class="col-6">
-            <p>
-              <span id="current-desc"></span>
-              <br />
-              Humidity: <span id="humidity"></span>%
-              <br />
-              Wind: <span id="wind"></span>km/h
-            </p>
+          <div class="col-2">
+            <button class="btn btn-success" id="current-location-button">
+              Current
+            </button>
           </div>
         </div>
-        <div class="weather-forecast" id="forecast"></div>
-        <footer>
-          <a
-            href="https://github.com/Warri0r-Fairy/vanilla-weather-app"
-            target="_blank"
-            >Code open-sourced</a
-          >
-          by Jacqui Lewis
-        </footer>
+      </form>
+      <div class="row row-spacing">
+        <div class="col-6">
+          <div class="current-location">
+            <h1 id="city-name"></h1>
+          </div>
+        </div>
       </div>
+
+      <div class="row row-spacing">
+        <div class="col-4">
+          <p class="date" id="current-date"></p>
+        </div>
+        <div class="col-2">
+          <img src="#" class="current-icon" id="current-weather-icon" />
+          <span class="temp-now" id="current-temp"></span>
+          <span class="units">°C </span>
+        </div>
+
+        <div class="col-6">
+          <p>
+            <span id="current-desc"></span>
+            <br />
+            Humidity: <span id="humidity"></span>%
+            <br />
+            Wind: <span id="wind"></span>km/h
+          </p>
+        </div>
+      </div>
+      <div class="weather-forecast" id="forecast"></div>
+      <footer>
+        <a
+          href="https://github.com/Warri0r-Fairy/vanilla-weather-app"
+          target="_blank"
+          >Code open-sourced</a
+        >
+        by Jacqui Lewis
+      </footer>
     </div>
     <script src="src/script.js"></script>
   </body>
